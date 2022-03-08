@@ -1,46 +1,36 @@
-import React, {Component} from "react";
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-// import Home from "./components/Home";
-import StudentList from "./Components/StudentList";
-import AddMentee from "./Components/AddMentees";
-import LogIn from "./Components/login";
-import SignUp from "./Components/signUp";
-import Logdetials from "./Components/Logdetials";
-import {AuthProvider} from "./Components/Auth";
-import Dashboard from "./Components/Dashboard";
-import Forgot from "./Components/Forgot";
+import React from "react";
+import { BrowserRouter as Router, Routes, Navigate, Route } from "react-router-dom";
+import { AuthProvider } from "./Components/Connections/Auth";
+import Login from "./Components/Staff/LoginComponent/Login";
+import Register from "./Components/Staff/LoginComponent/Regester";
+import StaffDashboard from "./Components/Staff/Screen/StaffDashboard";
+import RegesterSt from "./Components/Student/LoginComponent/Regester";
+import StudentDashboard from "./Components/Student/Screen/StudentDashBoard";
+import AddMentees from "./Components/Staff/Screen/AddMentees";
+import EditProfile from "./Components/Staff/Screen/EditProfile";
+import DeleteMentee from "./Components/Staff/Screen/DeleteMentee";
+import MenteeList from "./Components/Staff/Screen/MenteeList";
+import PageNotFound from "./Components/NotFound";
 
-class App extends Component {
-  render() {
-    return (<AuthProvider>
-      <Router>
-        <Route exact path="/">
-          <Redirect to="/Login"/>
-        </Route>
-        <Route exact path="/Dashboard">
-          <Dashboard/>
-        </Route>
-        <Route exact path="/Login">
-          <LogIn/>
-        </Route>
-        <Route exact path="/addmentee">
-          <AddMentee/>
-        </Route>
-        <Route exact path="/log">
-          <Logdetials/>
-        </Route>
-        <Route exact path="/forgot">
-          <Forgot/>
-        </Route>
-        <Route exact path="/signUp">
-          <SignUp/>
-        </Route>
-        <Route exact path="/list">
-          <StudentList/>
-        </Route>
-      </Router>
-    </AuthProvider>);
-  }
+const App = () => {
+  return (<AuthProvider >
+    <Router >
+      <Routes >
+        <Route exact path="/" element={<Navigate to="/Login" />} />
+        <Route exact path="/Login" element={<Login />} />
+        <Route exact path="/Register" element={<Register />} />
+        <Route exact path="/DashBoard" element={<StaffDashboard />} />
+        <Route exact path="/StudentRegester" element={<RegesterSt />} />
+        <Route exact path="/StudentDashBoard" element={<StudentDashboard />} />
+        <Route exact path="/AddMentees" element={<AddMentees />} />
+        <Route exact path="/DeleteMentee" element={<DeleteMentee />} />
+        <Route exact path="/ViewMentees" element={<MenteeList />} />
+        <Route exact path="/Staff-EditProfile" element={<EditProfile />} />
+        <Route exact path="*" element={<PageNotFound />} />
+      </Routes >
+    </Router>
+  </AuthProvider>
+  );
 }
 
 export default App;
