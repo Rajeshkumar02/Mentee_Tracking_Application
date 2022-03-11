@@ -31,12 +31,11 @@ const StudentDashboard = () => {
     }
     return (
         <>
-            {userPhoto}
-            <h1>User Roll : = </h1>
-            <br />
-            <img src={userPhoto} alt="image" />
+            <p>User Roll :- {localStorage.getItem("userroll")}</p>
+            <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
             <button onClick={logOut} >LogOut</button>
-            <p>{localStorage.getItem("userDesignation")}</p>
+            <br />
+            <Link to="/Student-EditProfile"><img src={userPhoto} width={"250px"} alt="image" /></Link><br /><br />
         </>
     );
 }

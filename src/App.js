@@ -11,6 +11,9 @@ import EditProfile from "./Components/Staff/Screen/EditProfile";
 import DeleteMentee from "./Components/Staff/Screen/DeleteMentee";
 import MenteeList from "./Components/Staff/Screen/MenteeList";
 import PageNotFound from "./Components/NotFound";
+import StudentEditProfile from "./Components/Student/Screen/StudentEditProfile";
+import ExamHome from "./Components/Staff/Screen/Exam/ExamHome";
+import StudentExamHome from "./Components/Staff/Screen/Exam/StudentExamHome";
 
 const App = () => {
   return (<AuthProvider >
@@ -26,6 +29,9 @@ const App = () => {
         <Route exact path="/DeleteMentee" element={<DeleteMentee />} />
         <Route exact path="/ViewMentees" element={<MenteeList />} />
         <Route exact path="/Staff-EditProfile" element={<EditProfile />} />
+        <Route exact path="/Student-EditProfile" element={<StudentEditProfile />} />
+        <Route exact path="/Examhome" element={<ExamHome />} />
+        <Route exact path="/StudentExamHome" element={<StudentExamHome />} />
         <Route exact path="*" element={<PageNotFound />} />
       </Routes >
     </Router>

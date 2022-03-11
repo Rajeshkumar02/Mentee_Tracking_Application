@@ -3,7 +3,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-function EditProfile() {
+function StudentEditProfile() {
 
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -13,7 +13,7 @@ function EditProfile() {
     const [Change, setChange] = useState('');
 
     useEffect(async () => {
-        const docRef = doc(db, "Staff", localStorage.getItem("userroll"));
+        const docRef = doc(db, "Student", localStorage.getItem("userroll"));
         const docSnap = await getDoc(docRef);
         if (flag) {
             setUserName(docSnap.data().Name);
@@ -29,7 +29,7 @@ function EditProfile() {
         e.preventDefault();
         if (Change !== UserPhoto) {
             const storage = getStorage();
-            const storageRef = ref(storage, '/Mentor-Images/' + localStorage.getItem("userroll"));
+            const storageRef = ref(storage, '/Student-Images/' + localStorage.getItem("userroll"));
             const uploadTask = uploadBytesResumable(storageRef, UserPhoto);
             uploadTask.on('state_changed',
                 (snapshot) => {
@@ -42,7 +42,7 @@ function EditProfile() {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         setChange(downloadURL);
-                        const UpdateData = doc(db, 'Staff', localStorage.getItem("userroll"));
+                        const UpdateData = doc(db, 'Student', localStorage.getItem("userroll"));
                         setDoc(UpdateData, {
                             Name: userName,
                             Email: userEmail,
@@ -56,7 +56,7 @@ function EditProfile() {
                     );
                 });
         } else {
-            const UpdateData = doc(db, 'Staff', localStorage.getItem("userroll"));
+            const UpdateData = doc(db, 'Student', localStorage.getItem("userroll"));
             setDoc(UpdateData, {
                 Name: userName,
                 Email: userEmail,
@@ -92,4 +92,4 @@ function EditProfile() {
     )
 }
 
-export default EditProfile;
+export default StudentEditProfile;
