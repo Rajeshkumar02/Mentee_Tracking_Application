@@ -1,13 +1,11 @@
 import React, { useState, useContext } from "react";
-import {Navigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
 import { AuthContext } from "../../Connections/Auth";
 
 const DeleteMentee = () => {
 
-    const auth = getAuth();
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [RollNumber, setRollNumber] = useState('');
@@ -105,7 +103,7 @@ const DeleteMentee = () => {
                                 Email : {userEmail} <br />
                                 Phone : {UserPhonenumber} <br />
                                 Photo :- <br />
-                                <img src={UserPhoto} alt="image" /><br /><br ></br>
+                                <img src={UserPhoto} alt="user" /><br /><br ></br>
                                 <button onClick={RemoveMentee} >Remove Mentee</button>
                             </>
                             :

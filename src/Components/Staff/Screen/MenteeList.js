@@ -101,7 +101,7 @@ const MenteeList = () => {
                             <h5 className="modal-title" id="exampleModalLongTitle">Student Information</h5>
                         </div>
                         <div className="modal-body">
-                            <center><img src={userphoto} className="rounded-circle" alt="Rounded Image" width="200" height="200" /></center>
+                            <center><img src={userphoto} className="rounded-circle" alt="Rounded" width="200" height="200" /></center>
                             <table style={{ width: "100%", height: "100px" }}>
                                 <tbody>
                                     <tr>

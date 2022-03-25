@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { doc, collection, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../../../Connections/Config";
-import StudentExamHome from "./StudentExamHome";
 import { Link } from "react-router-dom";
 
 
@@ -62,7 +61,7 @@ const ExamHome = (props) => {
                         Data.length === 0
                             ?
                             <>
-                                <h4><center>Loading...</center></h4>
+                                <h4><center>No Data Found !</center></h4>
                             </>
                             :
                             <>
@@ -72,6 +71,7 @@ const ExamHome = (props) => {
                                         className="btn btn-primary"
                                         to={{
                                             pathname: "/StudentExamHome",
+                                            hash: user.Roll_Number
                                         }}
                                         state={{ user }}
                                     >

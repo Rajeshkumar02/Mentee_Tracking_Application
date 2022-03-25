@@ -77,7 +77,6 @@ function EditProfile() {
     return (
         <>
             <center>
-                <h5></h5>
                 <form onSubmit={handleSubmit}>
                     Name : <input type="text" placeholder={userName} name="username" onChange={e => setUserName(e.target.value)} /><br /><br />
                     Phone : <input type="text" placeholder={UserPhonenumber} name="userphone" onChange={e => setUserPhonenumber(e.target.value)} /><br /><br />

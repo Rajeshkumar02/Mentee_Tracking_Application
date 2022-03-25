@@ -4,13 +4,13 @@ import 'firebase/compat/storage';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAzZzjN298O7uWnQfDEcs51a-DVE9_xVK0",
-    authDomain: "mentee-tracking-system.firebaseapp.com",
-    projectId: "mentee-tracking-system",
-    storageBucket: "mentee-tracking-system.appspot.com",
-    messagingSenderId: "665844868857",
-    appId: "1:665844868857:web:0da6c75dc7052c115ca428",
-    measurementId: "G-0JQGLYWPM2"
+    apiKey: "AIzaSyCsz3fyyj2fJ9u1zac-SIEUA6Ydh0wbRQA",
+    authDomain: "menteetrackingsystem.firebaseapp.com",
+    projectId: "menteetrackingsystem",
+    storageBucket: "menteetrackingsystem.appspot.com",
+    messagingSenderId: "393053235642",
+    appId: "1:393053235642:web:997f5843ac5d6edf82d583",
+    measurementId: "G-5ZP5W5PC8E"
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 

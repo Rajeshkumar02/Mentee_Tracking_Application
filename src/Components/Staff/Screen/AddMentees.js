@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
 import { AuthContext } from "../../Connections/Auth";
 
 function AddMentees() {
-    const auth = getAuth();
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [RollNumber, setRollNumber] = useState('');
@@ -102,7 +100,7 @@ function AddMentees() {
                                 Phone : {UserPhonenumber} <br />
                                 Mentor RollNumber : {Mentor} <br />
                                 Photo :- <br />
-                                <img src={UserPhoto} alt="image" /><br /><br ></br>
+                                <img src={UserPhoto} alt="user" /><br /><br ></br>
                                 <button onClick={AddMentee} >Add Mentee</button>
                             </>
                             :

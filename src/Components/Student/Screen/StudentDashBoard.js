@@ -35,7 +35,7 @@ const StudentDashboard = () => {
             <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
             <button onClick={logOut} >LogOut</button>
             <br />
-            <Link to="/Student-EditProfile"><img src={userPhoto} width={"250px"} alt="image" /></Link><br /><br />
+            <Link to="/Student-EditProfile"><img src={userPhoto} width={"250px"} alt="user" /></Link><br /><br />
         </>
     );
 }

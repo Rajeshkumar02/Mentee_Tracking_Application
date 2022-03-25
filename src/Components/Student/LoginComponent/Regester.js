@@ -51,7 +51,6 @@ function RegesterSt() {
                     }
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log(errorMessage);
                     alert("User Email is already Present !");

@@ -35,7 +35,7 @@ const StaffDashboard = () => {
             <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
             <button onClick={logOut} >LogOut</button>
             <br />
-            <Link to="/Staff-EditProfile"><img src={userPhoto} width={"250px"} alt="image" /></Link><br /><br />
+            <Link to="/Staff-EditProfile"><img src={userPhoto} width={"250px"} alt="user" /></Link><br /><br />
             <Link to="/AddMentees">Add Mentee's</Link><br /><br />
             <Link to="/DeleteMentee">Remove Mentee's</Link><br /><br />
             <Link to="/ViewMentees">View Mentee's</Link><br /><br />
