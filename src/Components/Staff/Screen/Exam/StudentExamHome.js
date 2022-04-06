@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { doc, collection, getDocs, getDoc, updateDoc, deleteField, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, collection, getDocs, getDoc, updateDoc, deleteField, setDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../Connections/Config";
 
 
@@ -11,7 +11,7 @@ const StudentExamHome = () => {
     const [Marks, setMarks] = useState([]);
     const [exam_name, setexam] = useState("");
     const [subjectname, setsubjectname] = useState("");
-    const [subjectmark, setsubjectmark] = useState();
+    const [subjectmark, setsubjectmark] = useState("");
 
     const rollnumber = location.state.user.Roll_Number;
 
@@ -19,14 +19,16 @@ const StudentExamHome = () => {
         await get();
     }, [db]);
     const get = async () => {
-        const querySnapshot = await getDocs(collection(db, rollnumber + "-Exams"));
-        querySnapshot.forEach(async (doc1) => {
-            const docRef = doc(db, rollnumber + "-Exams", doc1.id);
-            const docSnap = await getDoc(docRef);
-            setData((arr) => arr.concat(docSnap.data()));
-            //console.log(Data);
+        const querySnapshot = onSnapshot(collection(db, rollnumber + "-Exams"), (docc) => {
+            setData([]);
+            docc.forEach(async (doc1) => {
+                const docRef = doc(db, rollnumber + "-Exams", doc1.id);
+                const docSnap = await getDoc(docRef);
+                setData((arr) => arr.concat(docSnap.data()));
+                //console.log(Data);
+            });
+            // console.log(Data);
         });
-        // console.log(Data);
     }
 
 
@@ -35,21 +37,22 @@ const StudentExamHome = () => {
         const subject = doc(db, rollnumber + "-Exams", exam_name);
         await updateDoc(subject, {
             [x]: deleteField()
-        }).then((e) => { alert("Done"); window.location.reload(false); });
+        }).then((e) => { alert("Done"); });
     }
 
     const DeleteExam = async () => {
-        await deleteDoc(doc(db, rollnumber + "-Exams", exam_name)).then((e) => { alert("Deleted"); window.location.reload(false); });
+        await deleteDoc(doc(db, rollnumber + "-Exams", exam_name)).then((e) => { alert("Deleted"); });
     }
 
     const Click = async (x) => {
         setexam(x.Name);
         setMarks(x);
+        console.log(Data);
     }
 
     const addsubject = async () => {
         const add = doc(db, rollnumber + "-Exams", exam_name);
-        setDoc(add, { [subjectname]: subjectmark }, { merge: true }).then((e) => { alert("done"); setsubjectmark(""); setsubjectname(""); window.location.reload(false); });
+        setDoc(add, { [subjectname]: subjectmark }, { merge: true }).then((e) => { alert("done"); setsubjectmark(""); setsubjectname(""); });
     }
 
     return (
@@ -68,7 +71,7 @@ const StudentExamHome = () => {
                 {
                     Data.length === 0 ?
                         <>
-                            <center><h3>No Data Found</h3></center>
+                            <center><h3>No Data Found !</h3></center>
                         </>
                         :
                         <>
@@ -93,10 +96,10 @@ const StudentExamHome = () => {
                             <table style={{ width: "100%", height: "100px" }}>
                                 <thead>
                                     <tr>
-                                        <td>Course Name</td>
-                                        <td>Mark</td>
-                                        <td>Result</td>
-                                        <td>Delete</td>
+                                        <th>Course Name</th>
+                                        <th>Mark</th>
+                                        <th>Result</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,10 +137,10 @@ const StudentExamHome = () => {
                         <div className="modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="Enter Subject Name" onChange={(e) => setsubjectname(e.target.value)} required />
+                                    <input type="text" className="form-control" value={subjectname} placeholder="Enter Subject Name" onChange={(e) => setsubjectname(e.target.value)} required />
                                 </div>
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="Enter Subject Mark" onChange={(e) => setsubjectmark(e.target.value)} required />
+                                    <input type="text" className="form-control" value={subjectmark} placeholder="Enter Subject Mark" onChange={(e) => setsubjectmark(e.target.value)} required />
                                 </div>
                             </div>
                             <button className="btn btn-success" onClick={addsubject}>Add/Update</button>

@@ -40,6 +40,7 @@ const StaffDashboard = () => {
             <Link to="/DeleteMentee">Remove Mentee's</Link><br /><br />
             <Link to="/ViewMentees">View Mentee's</Link><br /><br />
             <Link to="/Examhome">Exam Mark</Link><br /><br />
+            <Link to="/Attendance ">Student Attendance </Link><br /><br />
         </>
     );
 }

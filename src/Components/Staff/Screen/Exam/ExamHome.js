@@ -61,7 +61,7 @@ const ExamHome = (props) => {
                         Data.length === 0
                             ?
                             <>
-                                <h4><center>No Data Found !</center></h4>
+                                <h4><center>Loading .... !</center></h4>
                             </>
                             :
                             <>
