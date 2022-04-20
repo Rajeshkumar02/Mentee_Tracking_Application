@@ -2,20 +2,27 @@ import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../Connections/Auth";
 import { getAuth, signOut } from "firebase/auth";
 import { Link, Navigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../Connections/Config";
+import Today from "./Today";
 
 const StaffDashboard = () => {
 
     const { currentUser } = useContext(AuthContext);
 
     const [userPhoto, setUserPhoto] = useState('');
+    const [Students, setStudents] = useState([]);
 
     useEffect(async () => {
         const docRef = doc(db, "Staff", localStorage.getItem("userroll"));
         const docSnap = await getDoc(docRef);
         setUserPhoto(docSnap.data().Image_Url);
-    });
+        const querySnapshot = await getDocs(collection(db, localStorage.getItem("userroll")));
+        querySnapshot.forEach((doc) => {
+            // console.log(doc.id);
+            setStudents([...Students, doc.id]);
+        });
+    }, [db]);
 
     function logOut() {
         const auth = getAuth();
@@ -29,8 +36,10 @@ const StaffDashboard = () => {
     if (!currentUser) {
         return <Navigate to="/"></Navigate>
     }
+    // console.log(Students);
     return (
         <>
+            <Today students={Students}/>
             <p>User Roll :- {localStorage.getItem("userroll")}</p>
             <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
             <button onClick={logOut} >LogOut</button>
