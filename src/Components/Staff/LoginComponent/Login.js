@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
 import { AuthContext } from "../../Connections/Auth";
+import "./Loginstyle.css";
 
 
 function Login() {
@@ -55,24 +56,39 @@ function Login() {
 
     return (
         <>
-            <center>
-                <h5>Login</h5>
-                <form onSubmit={handleSubmit}>
-                    Email : <input type="email" placeholder="Enter Email Id" name="email" onChange={e => setUserEmail(e.target.value)} /><br /><br />
-                    Password : <input type={showpasswordtype} placeholder="Enter Password" name="password" onChange={e => setUserPassword(e.target.value)} />
-                    <input type="checkbox" onClick={(e) => {
-                        if (showpasswordtype === "password") {
-                            setpasswordtype("text");
-                        } else if (showpasswordtype === "text") {
-                            setpasswordtype("password");
-                        }
-                    }} />Show Password
-                    <br />
-                    <input type="submit" value="Login" />
-                </form>
-                <Link to="/Register">Register</Link><br /><br />
-                {Error}
-            </center>
+            <div class="global-container">
+                <div class="card login-form">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Login</h3>
+                        <div class="card-text">
+                            <form onSubmit={handleSubmit}>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control form-control-sm" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="Enter Email Id" name="email" onChange={e => setUserEmail(e.target.value)} />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type={showpasswordtype} class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Enter Password" name="password" onChange={e => setUserPassword(e.target.value)} />
+                                    <br/>
+                                    <input type="checkbox" onClick={(e) => {
+                                        if (showpasswordtype === "password") {
+                                            setpasswordtype("text");
+                                        } else if (showpasswordtype === "text") {
+                                            setpasswordtype("password");
+                                        }
+                                    }} />Show Password
+                                    <br />
+                                </div>
+                                <input class="btn btn-primary btn-block" type="submit" value="Login" />
+                            </form>
+                            <div class="sign-up">
+                                <Link to="/Register">Register</Link><br /><br /></div>
+                            {Error}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

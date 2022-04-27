@@ -52,14 +52,6 @@ function Today(props) {
                                         </tr>
                                     ))
                                 }
-                                <tr>
-                                    <td>Total Present </td>
-                                    <td style={{ color: "green" }}>{Present}</td>
-                                </tr>
-                                <tr>
-                                    <td>Total Absent</td>
-                                    <td style={{ color: "red" }}>{Absent}</td>
-                                </tr>
                             </tbody>
                         </table>
                     </>

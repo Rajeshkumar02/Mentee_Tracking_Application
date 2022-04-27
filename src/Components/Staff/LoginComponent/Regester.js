@@ -4,6 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
 import { AuthContext } from "../../Connections/Auth";
+import "./Loginstyle.css";
 
 function Register() {
     const [showpasswordtype, setpasswordtype] = useState("password");
@@ -65,26 +66,49 @@ function Register() {
 
     return (
         <>
-            <center>
-                <h5>Register</h5>
-                <form onSubmit={handleSubmit}>
-                    Name : <input type="text" placeholder="Enter Name" name="name" onChange={e => setUserName(e.target.value)} /><br /><br />
-                    Roll Number : <input type="text" placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} /><br /><br />
-                    Email : <input type="email" placeholder="Enter Email Id" name="email" onChange={e => setUserEmail(e.target.value)} /><br /><br />
-                    Phone Number : <input type="text" placeholder="Enter your Phone Number" name="phonenumber" onChange={e => setUserPhonenumber(e.target.value)} /><br /><br />
-                    Password : <input type={showpasswordtype} placeholder="Enter Password" name="password" onChange={e => setUserPassword(e.target.value)} />
-                    <input type="checkbox" onClick={(e) => {
-                        if (showpasswordtype === "password") {
-                            setpasswordtype("text");
-                        } else if (showpasswordtype === "text") {
-                            setpasswordtype("password");
-                        }
-                    }} />Show Password
-                    <br /><br />
-                    <input type="submit" value="Signup" />
-                </form>
-                <Link to="/Login">Login</Link>
-            </center>
+            <div class="global-container">
+                <div class="card login-form">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Register</h3>
+                        <div class="card-text">
+                            <form onSubmit={handleSubmit}>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">NAME</label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputName1" placeholder="Enter Name" name="name" onChange={e => setUserName(e.target.value)} />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Roll_Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputName1" placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Email</label>
+                                    <input type="email" class="form-control form-control-sm" id="exampleInputName1" placeholder="Enter Email Id" name="email" onChange={e => setUserEmail(e.target.value)} />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">phonenumber</label>
+                                    <input type="text" class="form-control form-control-sm" id="exampleInputName1" placeholder="Enter your Phone Number" name="phonenumber" onChange={e => setUserPhonenumber(e.target.value)} />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Password</label>
+                                    <input type={showpasswordtype} class="form-control form-control-sm" id="exampleInputName1" placeholder="Enter Password" name="password" onChange={e => setUserPassword(e.target.value)} />
+
+                                    <input type="checkbox" onClick={(e) => {
+                                        if (showpasswordtype === "password") {
+                                            setpasswordtype("text");
+                                        } else if (showpasswordtype === "text") {
+                                            setpasswordtype("password");
+                                        }
+                                    }} />Show Password
+
+                                    <input class="btn btn-primary btn-block" type="submit" value="Signup" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="sign-up">
+                            <Link to="/Login">Login</Link>
+                        </div>
+                    </div></div></div>
         </>
     );
 }
