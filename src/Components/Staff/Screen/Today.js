@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { doc, collection, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../../Connections/Config";
+import "./CSS/Today.css";
 
 function Today(props) {
 
@@ -14,7 +15,7 @@ function Today(props) {
 
         if (docSnap.exists()) {
             setData(docSnap.data());
-            console.log("==>"+Object.keys(Data));
+            console.log("==>" + Object.keys(Data));
             if (docSnap.data()) {
                 setPresent(Present + 1);
             } else {
@@ -36,24 +37,26 @@ function Today(props) {
                     :
                     <>
                         <b>Today's Attendance</b>
-                        <table style={{ width: 50 + "%" }}>
-                            <thead>
-                                <tr>
-                                    <th>Student RollNumber</th>
-                                    <th>Attendance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    Object.keys(Data).map((key, i) => (
-                                        <tr key={i}>
-                                            <td>{key}</td>
-                                            <td>{Data[key] ? <p style={{ color: "green" }} >Present</p> : <p style={{ color: "red" }}>Absent</p>}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <table class="table table-bordered table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Student RollNumber</th>
+                                        <th scope="col">Attendance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        Object.keys(Data).map((key, i) => (
+                                            <tr key={i}>
+                                                <td scope="row">{key}</td>
+                                                <td>{Data[key] ? <p style={{ color: "green" }} >Present</p> : <p style={{ color: "red" }}>Absent</p>}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </>
                 }
             </center>
