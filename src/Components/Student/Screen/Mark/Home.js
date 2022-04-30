@@ -1,0 +1,133 @@
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import { doc, collection, getDocs, getDoc, updateDoc, deleteField, setDoc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../Connections/Config";
+
+
+const Home = () => {
+    let location = useLocation();
+
+    const [Data, setData] = useState([]);
+    const [Marks, setMarks] = useState([]);
+    const [exam_name, setexam] = useState("");
+    const [subjectname, setsubjectname] = useState("");
+    const [subjectmark, setsubjectmark] = useState("");
+
+    const rollnumber = localStorage.getItem("userroll");
+
+    useEffect(async () => {
+        await get();
+    }, [db]);
+    const get = async () => {
+        const querySnapshot = onSnapshot(collection(db, rollnumber + "-Exams"), (docc) => {
+            setData([]);
+            docc.forEach(async (doc1) => {
+                const docRef = doc(db, rollnumber + "-Exams", doc1.id);
+                const docSnap = await getDoc(docRef);
+                setData((arr) => arr.concat(docSnap.data()));
+                //console.log(Data);
+            });
+            // console.log(Data);
+        });
+    }
+
+
+    const DeleteSubject = async (x) => {
+        // console.log(rollnumber + "-Exams"+ exam_name+x);
+        const subject = doc(db, rollnumber + "-Exams", exam_name);
+        await updateDoc(subject, {
+            [x]: deleteField()
+        }).then((e) => { alert("Done"); });
+    }
+
+    const DeleteExam = async () => {
+        await deleteDoc(doc(db, rollnumber + "-Exams", exam_name)).then((e) => { alert("Deleted"); });
+    }
+
+    const Click = async (x) => {
+        setexam(x.Name);
+        setMarks(x);
+        console.log(Data);
+    }
+
+    const addsubject = async () => {
+        const add = doc(db, rollnumber + "-Exams", exam_name);
+        setDoc(add, { [subjectname]: subjectmark }, { merge: true }).then((e) => { alert("done"); setsubjectmark(""); setsubjectname(""); });
+    }
+
+    return (
+        <>
+            <center>
+                <h2>Exams</h2><br />
+                {
+                    Data.length === 0 ?
+                        <>
+                            <center><h3>No Data Found !</h3></center>
+                        </>
+                        :
+                        <>
+                            {Data.map((user, i) => (
+                                <p key={i} onClick={() => {
+                                    Click(user);
+                                }}> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                        {user.Name}
+                                    </button></p>
+                            ))}
+                        </>
+                }
+            </center>
+            <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Student Mark</h5>
+                        </div>
+                        <div className="modal-body">
+                            <table style={{ width: "100%", height: "100px" }}>
+                                <thead>
+                                    <tr>
+                                        <th>Course Name</th>
+                                        <th>Mark</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        Object.keys(Marks).map(key => {
+                                            return (
+                                                <tr key={key.charAt(0) + key.slice(1)}>
+                                                    {
+                                                        key !== "Name" ?
+                                                            <>
+                                                                <td>
+                                                                    {key.charAt(0) + key.slice(1)}
+                                                                </td>
+                                                                <td>
+                                                                    {Marks[key]}
+                                                                </td>
+                                                                <td>
+                                                                    {Marks[key] >= 50 ? <><p style={{ color: "green" }}>P</p></> : <><p style={{ color: "red" }}>F</p></>}
+                                                                </td>
+                                                            </>
+                                                            :
+                                                            <>
+                                                            </>
+                                                    }
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default Home;

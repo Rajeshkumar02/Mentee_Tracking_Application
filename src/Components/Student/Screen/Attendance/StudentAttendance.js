@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { doc, collection, getDocs, getDoc, updateDoc, deleteField, setDoc, deleteDoc, onSnapshot, query, orderBy } from "firebase/firestore";
+import { doc, collection, getDocs, getDoc, updateDoc, deleteField, setDoc, deleteDoc, onSnapshot,query, orderBy } from "firebase/firestore";
 import { db } from "../../../Connections/Config";
-import { Button } from "rsuite";
 
-function StdentAttendanceHome() {
+function StdentAttendance() {
     let location = useLocation();
 
     const [Data, setData] = useState([]);
@@ -12,21 +11,21 @@ function StdentAttendanceHome() {
     const [Date, setDate] = useState("");
     const [index, setindex, getindex] = useState(-1);
 
-    const rollnumber = location.state.user.Roll_Number;
+    const rollnumber = localStorage.getItem("userroll");
 
     useEffect(async () => {
         await get();
     }, [db]);
 
-    const Datas = () => {
-        if (Data[getindex]) {
+    useEffect(()=>{
+        if(Data[getindex]){
             setAttendance(Data[getindex]);
             setDate(Data[getindex].Name);
         }
-    };
+    },[Data]);
 
     const get = async () => {
-
+        
         const querySnapshot = onSnapshot(collection(db, rollnumber + "-Attendance"), (docc) => {
             setData([]);
             docc.forEach(async (doc1) => {
@@ -35,31 +34,8 @@ function StdentAttendanceHome() {
                 setData((arr) => arr.concat(docSnap.data()));
                 //console.log(Data);
             });
-            Datas();
             // console.log(Data);
         });
-    }
-
-    const Create_Att = async () => {
-        const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        var date = new window.Date();
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-        let day1 = weekday[date.getDay()];
-        console.log(day + "-" + month + "-" + year + "-" + day1);
-        await setDoc(doc(db, rollnumber + "-Attendance", day + "-" + month + "-" + year + "-" + day1), {
-            1: false,
-            2: false,
-            3: false,
-            4: false,
-            5: false,
-            6: false,
-            7: false,
-            8: false,
-            Name: day + "-" + month + "-" + year + "-" + day1,
-        }).then(() => { alert("Done") });
-
     }
 
 
@@ -77,7 +53,7 @@ function StdentAttendanceHome() {
         await deleteDoc(doc(db, rollnumber + "-Attendance", Date)).then((e) => { alert("Deleted"); });
     }
 
-    const Click = async (x, i) => {
+    const Click = async (x,i) => {
         setDate(x.Name);
         setAttendance(x);
         setindex(i);
@@ -89,9 +65,7 @@ function StdentAttendanceHome() {
     return (
         <>
             <center>
-                <h2>Attendance</h2><br />
-
-                <Button className="btn btn-primary" onClick={Create_Att}>Create Today</Button><br />
+                <h2>Attendance</h2><br/>
                 {
                     Data.length === 0 ?
                         <>
@@ -101,7 +75,7 @@ function StdentAttendanceHome() {
                         <>
                             {Data.map((user, i) => (
                                 <p key={i} onClick={() => {
-                                    Click(user, i);
+                                    Click(user,i);
                                 }}> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
                                         {user.Name}
                                     </button></p>
@@ -114,7 +88,6 @@ function StdentAttendanceHome() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLongTitle">Student Attendance</h5>
-                            <button type="button" onClick={() => DeleteDate()} className="btn btn-danger">Delete</button>
                         </div>
                         <div className="modal-body">
                             <table style={{ width: "100%", height: "100px" }}>
@@ -122,7 +95,6 @@ function StdentAttendanceHome() {
                                     <tr>
                                         <th>Period</th>
                                         <th>Present/Absent</th>
-                                        <th>Change</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -141,9 +113,6 @@ function StdentAttendanceHome() {
                                                                 </td>
                                                                 <td>
                                                                     {Attendance[key] ? <><p style={{ color: "green" }}>Present</p></> : <><p style={{ color: "red" }}>Absent</p></>}
-                                                                </td>
-                                                                <td>
-                                                                    {Attendance[key] ? <><button type="button" onClick={() => ChangeAttendance(key)} className="btn btn-danger">✘</button></> : <><button type="button" onClick={() => ChangeAttendance(key)} className="btn btn-success">✔</button></>}
                                                                 </td>
                                                             </>
                                                             :
@@ -164,4 +133,4 @@ function StdentAttendanceHome() {
     );
 }
 
-export default StdentAttendanceHome;
+export default StdentAttendance;

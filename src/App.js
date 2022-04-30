@@ -17,6 +17,8 @@ import StudentExamHome from "./Components/Staff/Screen/Exam/StudentExamHome";
 import AddNewExam from "./Components/Staff/Screen/Exam/AddNewExam";
 import AttendanceHome from "./Components/Staff/Screen/Attendance/AttendanceHome";
 import StdentAttendanceHome from "./Components/Staff/Screen/Attendance/StdentAttendanceHome";
+import StdentAttendance from "./Components/Student/Screen/Attendance/StudentAttendance";
+import Home from "./Components/Student/Screen/Mark/Home";
 
 const App = () => {
   return (
@@ -39,6 +41,8 @@ const App = () => {
         <Route exact path="/AddNewExam" element={<AddNewExam />} />
         <Route exact path="/Attendance" element={<AttendanceHome/>} />
         <Route exact path="/StdentAttendanceHome" element={<StdentAttendanceHome/>} />
+        <Route exact path="/Home" element={<Home/>} />
+        <Route exact path="/StdentAttendance" element={<StdentAttendance/>} />
         <Route exact path="*" element={<PageNotFound />} />
       </Routes >
     </Router>

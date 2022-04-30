@@ -36,6 +36,8 @@ const StudentDashboard = () => {
             <button onClick={logOut} >LogOut</button>
             <br />
             <Link to="/Student-EditProfile"><img src={userPhoto} width={"250px"} alt="user" /></Link><br /><br />
+            <Link to="/Home">View Marks</Link><br /><br />
+            <Link to="/StdentAttendance">Attendance</Link><br /><br />
         </>
     );
 }
