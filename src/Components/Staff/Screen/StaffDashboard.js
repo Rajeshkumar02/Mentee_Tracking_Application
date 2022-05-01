@@ -11,6 +11,7 @@ import Delete_User from "../Lotifiles/Delete_User.json";
 import View_Mentee from "../Lotifiles/View_Mentee.json";
 import Exam_Mark from "../Lotifiles/Exam_Mark.json";
 import Attendance from "../Lotifiles/Attendance.json"
+import "./CSS/Staffdash.css";
 
 const StaffDashboard = () => {
 
@@ -90,26 +91,44 @@ const StaffDashboard = () => {
     // console.log(Students);
     return (
         <>
-            <p>User Roll :- {localStorage.getItem("userroll")}</p>
-            <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
-            <button onClick={logOut} >LogOut</button>
+            <header>
+                <div>
+                <div class="profile-userpic">
+                    <Link to="/Staff-EditProfile" ><img src={userPhoto} width={"100px"} alt="user" /></Link><br /><br />
+                </div>
+
+                <div className="button">
+                    <button onClick={logOut} className="btn btn-danger">LogOut</button>
+                </div>
+                <div className="userid">
+                    <b>
+                    <p>User Roll :- {localStorage.getItem("userroll")}</p>
+                    <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
+                    </b>
+                </div>
+                </div>
+                </header>
+        
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <Today students={Students} />
-            <Link to="/Staff-EditProfile"><img src={userPhoto} width={"250px"} alt="user" /></Link><br /><br />
             <Link to="/AddMentees">
-                <Lottie options={adduser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Add Mentee"/>
+                <Lottie options={adduser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Add Mentee" />
             </Link><br />
             <Link to="/DeleteMentee">
-                <Lottie options={deleteuser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Delete Mentee"/>
+                <Lottie options={deleteuser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Delete Mentee" />
             </Link><br /><br />
             <Link to="/ViewMentees">
-                <Lottie options={viewmentee} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="View Mentee"/>
+                <Lottie options={viewmentee} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="View Mentee" />
             </Link><br /><br />
             <Link to="/Examhome">
-                <Lottie options={exams} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Exam Marks"/>
+                <Lottie options={exams} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Exam Marks" />
             </Link><br /><br />
             <Link to="/Attendance ">
-                <Lottie options={attendance} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Attendance"/>
+                <Lottie options={attendance} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Attendance" />
             </Link><br /><br />
         </>
     );
