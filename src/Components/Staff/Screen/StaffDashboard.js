@@ -115,21 +115,23 @@ const StaffDashboard = () => {
             <br />
             <br />
             <Today students={Students} />
+            <div className="down">
             <Link to="/AddMentees">
-                <Lottie options={adduser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Add Mentee" />
+                <Lottie options={adduser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Add Mentee" />
             </Link><br />
             <Link to="/DeleteMentee">
-                <Lottie options={deleteuser} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Delete Mentee" />
+                <Lottie options={deleteuser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Delete Mentee" />
             </Link><br /><br />
             <Link to="/ViewMentees">
-                <Lottie options={viewmentee} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="View Mentee" />
+                <Lottie options={viewmentee} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="View Mentee" />
             </Link><br /><br />
             <Link to="/Examhome">
-                <Lottie options={exams} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Exam Marks" />
+                <Lottie options={exams} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Exam Marks" />
             </Link><br /><br />
             <Link to="/Attendance ">
-                <Lottie options={attendance} speed={1} height={200} width={200} data-toggle="tooltip" data-placement="top" title="Attendance" />
+                <Lottie options={attendance} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Attendance" />
             </Link><br /><br />
+            </div>
         </>
     );
 }

@@ -5,51 +5,61 @@ Licensed under MIT
 ***/
 
 body {
-    background: #F1F3FA;
-  }
-  header{
-      background:cornflowerblue;
-      overflow: hidden;
-     padding: 70px 50px;
-     text-transform: capitalize;
-     text-shadow: 0 0 3px #FF0000;
-     
-  }
+  background: #F1F3FA;
+}
 
+header {
+  background: rgb(153, 155, 159);
+  overflow: hidden;
+  padding: 70px 20px;
   
-  /* Profile container */
-  .profile {
-    margin: 10px 0;
-  }
-  
-  /* Profile sidebar */
-  .profile-sidebar {
-    padding: 10px 0 10px 0;
-    background: #fff;
-  }
-  
-  .profile-userpic img {
-    float: right;
-    border: 3px solid rgb(0, 0, 0);
-    position: absolute;
-    top: 25px;
-    left: 85% ;
-    
-    width: 50px;
-    height: 50px;
-    border-radius: 50px !important;
-    
-  }
+  text-transform: capitalize;
+  color: #F1F3FA;
+  font-family: Verdana, sans-serif;
+
+}
+
+
+/* Profile container */
+.profile {
+  margin: 10px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 10px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: right;
+  border: 3px solid rgb(0, 0, 0);
+  position: absolute;
+  top: 10%;
+  left: 85%;
  
-  
-  .button {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-  }
-  .userid {
-    position: absolute;
-    top: 13%;
-    right:6%;
-  }
-  
+  width: 50px;
+  height: 50px;
+  border-radius: 50px !important;
+
+}
+
+
+.button {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.userid {
+  position: absolute;
+  top: 13%;
+  right: 45%;
+}
+
+.down {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
