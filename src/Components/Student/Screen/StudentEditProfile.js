@@ -77,13 +77,13 @@ function StudentEditProfile() {
     return (
         <>
             <center>
+                <h2 class="font-monospace text-decoration-underline">Edit Profile</h2>
                 <form onSubmit={handleSubmit}>
                     Name : <input type="text" placeholder={userName} name="username" onChange={e => setUserName(e.target.value)} /><br /><br />
                     Phone : <input type="text" placeholder={UserPhonenumber} name="userphone" onChange={e => setUserPhonenumber(e.target.value)} /><br /><br />
-                    Image :
-                    <img alt="not fount" width={"250px"} src={Change} />
-                    <input type="file" name="userimage" onChange={uploadimage} /><br /><br />
-                    <input type="submit" value="Update" />
+                    <img alt="not fount" width={"250px"} src={Change} /><br/><br/>
+                    <input class="btn btn-primary" type="file" name="userimage" onChange={uploadimage} /><br /><br />
+                    <input class="btn btn-success" type="submit" value="Update" />
                 </form>
                 <br />
             </center>

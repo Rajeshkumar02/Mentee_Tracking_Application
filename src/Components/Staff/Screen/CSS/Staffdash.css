@@ -1,20 +1,14 @@
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: https://j.mp/metronictheme
-Licensed under MIT
-***/
-
 body {
-  background: #F1F3FA;
+  background: white;
 }
 
 header {
-  background: rgb(153, 155, 159);
+  background: rgb(62, 126, 255);
   overflow: hidden;
-  padding: 70px 20px;
-  
+  padding: 2% 20px;
+
   text-transform: capitalize;
-  color: #F1F3FA;
+  color: white;
   font-family: Verdana, sans-serif;
 
 }
@@ -33,13 +27,13 @@ header {
 
 .profile-userpic img {
   float: right;
-  border: 3px solid rgb(0, 0, 0);
+  border: 3px solid rgb(135, 219, 252);
   position: absolute;
-  top: 10%;
-  left: 85%;
- 
-  width: 50px;
-  height: 50px;
+  top: 2%;
+  left: 90%;
+
+  width: 80px;
+  height: 80px;
   border-radius: 50px !important;
 
 }
@@ -47,13 +41,13 @@ header {
 
 .button {
   position: absolute;
-  top: 8px;
+  top: 2%;
   left: 16px;
 }
 
 .userid {
   position: absolute;
-  top: 13%;
+  top: 4%;
   right: 45%;
 }
 
@@ -61,5 +55,6 @@ header {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 10px 300px;
 }

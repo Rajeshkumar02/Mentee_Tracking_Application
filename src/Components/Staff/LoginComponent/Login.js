@@ -83,7 +83,8 @@ function Login() {
                                 <input class="btn btn-primary btn-block" type="submit" value="Login" />
                             </form>
                             <div class="sign-up">
-                                <Link to="/Register">Register</Link><br /><br /></div>
+                                <Link to="/Register">Staff Register</Link><br /><br />
+                                <Link to="/StudentRegester">Student Register</Link><br /><br /></div>
                             {Error}
                         </div>
                     </div>

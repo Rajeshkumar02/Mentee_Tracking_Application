@@ -66,16 +66,18 @@ function AttendanceHome() {
                             <>
                                 <input type="text" onChange={(e) => { Sear(e.target.value) }} placeholder="Enter the Roll Number" /><br /><br />
                                 {Data.map((user, i) => (
-                                    <Link key={i}
-                                        className="btn btn-primary"
-                                        to={{
-                                            pathname: "/StdentAttendanceHome",
-                                            hash: user.Roll_Number
-                                        }}
-                                        state={{ user }}
-                                    >
-                                        {user.Roll_Number}
-                                    </Link>
+                                    <p key={i}>
+                                        <Link
+                                            className="btn btn-primary"
+                                            to={{
+                                                pathname: "/StdentAttendanceHome",
+                                                hash: user.Roll_Number
+                                            }}
+                                            state={{ user }}
+                                        >
+                                            {user.Roll_Number}
+                                        </Link>
+                                    </p>
                                 ))}
                             </>
                         :
@@ -84,15 +86,17 @@ function AttendanceHome() {
                             <>
                                 <input type="text" onChange={(e) => { Sear(e.target.value) }} placeholder="Enter the Roll Number" /><br /><br />
                                 {Search.map((user, i) => (
-                                    <Link key={i}
-                                        className="btn btn-primary"
-                                        to={{
-                                            pathname: "/StdentAttendanceHome",
-                                        }}
-                                        state={{ user }}
-                                    >
-                                        {user.Roll_Number}
-                                    </Link>
+                                    <p key={i}>
+                                        <Link
+                                            className="btn btn-primary"
+                                            to={{
+                                                pathname: "/StdentAttendanceHome",
+                                            }}
+                                            state={{ user }}
+                                        >
+                                            {user.Roll_Number}
+                                        </Link>
+                                    </p>
                                 ))}
                             </>
                             :

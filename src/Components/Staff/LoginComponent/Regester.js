@@ -69,7 +69,7 @@ function Register() {
             <div class="global-container">
                 <div class="card login-form">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Register</h3>
+                        <h3 class="card-title text-center">Staff Register</h3>
                         <div class="card-text">
                             <form onSubmit={handleSubmit}>
                                 <div class="form-group">

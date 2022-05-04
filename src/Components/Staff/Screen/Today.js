@@ -10,7 +10,12 @@ function Today(props) {
     const [Absent, setAbsent] = useState(0);
 
     useEffect(async () => {
-        const docRef = doc(db, "Student", "Attendance");
+        var date = new window.Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        // console.log(day + "-" + month + "-" + year);
+        const docRef = doc(db, "Attendance", day + "-" + month + "-" + year);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -36,13 +41,13 @@ function Today(props) {
                     <></>
                     :
                     <>
-                        <b>Today's Attendance</b>
+                        <b style={{"font-size": 30+"px"}}>Today's Attendance</b>
+                        <br/><br/><br/>
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
                             <table class="table table-bordered table-striped mb-0">
                                 <thead>
                                     <tr>
                                         <th scope="col">Student RollNumber</th>
-                                        <th scope="col">Attendance</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +55,6 @@ function Today(props) {
                                         Object.keys(Data).map((key, i) => (
                                             <tr key={i}>
                                                 <td scope="row">{key}</td>
-                                                <td>{Data[key] ? <p style={{ color: "green" }} >Present</p> : <p style={{ color: "red" }}>Absent</p>}</td>
                                             </tr>
                                         ))
                                     }

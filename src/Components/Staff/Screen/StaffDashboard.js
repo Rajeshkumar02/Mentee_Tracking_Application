@@ -93,44 +93,40 @@ const StaffDashboard = () => {
         <>
             <header>
                 <div>
-                <div class="profile-userpic">
-                    <Link to="/Staff-EditProfile" ><img src={userPhoto} width={"100px"} alt="user" /></Link><br /><br />
-                </div>
+                    <div class="profile-userpic">
+                        <Link to="/Staff-EditProfile" data-toggle="tooltip" data-placement="top" title="Edit Profile"><img src={userPhoto} width={"100px"} alt="user" /></Link><br /><br />
+                    </div>
 
-                <div className="button">
-                    <button onClick={logOut} className="btn btn-danger">LogOut</button>
+                    <div className="button">
+                        <button onClick={logOut} className="btn btn-danger">LogOut</button>
+                    </div>
+                    <div className="userid">
+                        <b>
+                            <p>User Roll :- {localStorage.getItem("userroll")}</p>
+                            <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
+                        </b>
+                    </div>
                 </div>
-                <div className="userid">
-                    <b>
-                    <p>User Roll :- {localStorage.getItem("userroll")}</p>
-                    <p>User Designation :- {localStorage.getItem("userDesignation")}</p>
-                    </b>
-                </div>
-                </div>
-                </header>
-        
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </header>
+
+            <br /><br /><br /><br /><br />
             <Today students={Students} />
             <div className="down">
-            <Link to="/AddMentees">
-                <Lottie options={adduser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Add Mentee" />
-            </Link><br />
-            <Link to="/DeleteMentee">
-                <Lottie options={deleteuser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Delete Mentee" />
-            </Link><br /><br />
-            <Link to="/ViewMentees">
-                <Lottie options={viewmentee} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="View Mentee" />
-            </Link><br /><br />
-            <Link to="/Examhome">
-                <Lottie options={exams} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Exam Marks" />
-            </Link><br /><br />
-            <Link to="/Attendance ">
-                <Lottie options={attendance} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Attendance" />
-            </Link><br /><br />
+                <Link to="/AddMentees">
+                    <Lottie options={adduser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Add Mentee" />
+                </Link>
+                <Link to="/DeleteMentee">
+                    <Lottie options={deleteuser} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Delete Mentee" />
+                </Link>
+                <Link to="/ViewMentees">
+                    <Lottie options={viewmentee} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="View Mentee" />
+                </Link>
+                <Link to="/Examhome">
+                    <Lottie options={exams} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Exam Marks" />
+                </Link>
+                <Link to="/Attendance ">
+                    <Lottie options={attendance} speed={1} height={100} width={100} data-toggle="tooltip" data-placement="top" title="Attendence" />
+                </Link>
             </div>
         </>
     );

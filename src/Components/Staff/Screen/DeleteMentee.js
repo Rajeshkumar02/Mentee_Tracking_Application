@@ -87,24 +87,49 @@ const DeleteMentee = () => {
     return (
         <>
             <center>
-                <h5>Remove Mentee's</h5>
+                <h2 class="font-monospace text-decoration-underline">Remove Mentee</h2>
                 <form onSubmit={handleSubmit}>
-                    Roll Number : <input type="text" value={UserRollnumber} placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} /><br /><br />
-                    <input type="submit" value="View" />
-                </form><br /><br />
+                <p class="text-muted"><b>Roll Number : </b><input type="text" value={UserRollnumber} placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} /></p><br />
+                    <input class="btn btn-primary" type="submit" value="View" />
+                </form><br />
                 {
                     UserRollnumber !== ""
                         ?
                         Present
                             ?
                             <>
-                                Name : {userName} <br />
-                                Roll Number : {RollNumber}<br />
-                                Email : {userEmail} <br />
-                                Phone : {UserPhonenumber} <br />
-                                Photo :- <br />
-                                <img src={UserPhoto} alt="user" /><br /><br ></br>
-                                <button onClick={RemoveMentee} >Remove Mentee</button>
+                                <div className="card" style={{ "width": 25 + "rem" }}>
+                                    <img className="card-img-top" src={UserPhoto} alt="Card image cap" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            <table className="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <b><td>Name</td></b>
+                                                        <td>: {userName} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Roll Number</td></b>
+                                                        <td>: {RollNumber}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Email </td></b>
+                                                        <td>: {userEmail}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Phone</td></b>
+                                                        <td>: {UserPhonenumber}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Mentor Id</td></b>
+                                                        <td>: {Mentor}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </h5>
+                                        <button className="btn btn-danger" onClick={RemoveMentee} >Remove Mentee</button>
+                                    </div>
+                                </div>
                             </>
                             :
                             Flag

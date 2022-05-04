@@ -54,7 +54,7 @@ function AddMentees() {
                     });
                 });
             } else {
-                alert(RollNumber + " is alreay belongs to some " + Mentor);
+                alert(RollNumber + " is alreay belongs to " + Mentor);
             }
         } else {
             alert("Enter the User Roll Number !");
@@ -83,25 +83,49 @@ function AddMentees() {
     return (
         <>
             <center>
-                <h5>Add Mentee's</h5>
+                <h2 class="font-monospace text-decoration-underline">Add Mentee</h2>
                 <form onSubmit={handleSubmit}>
-                    Roll Number : <input type="text" value={UserRollnumber} placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} /><br /><br />
-                    <input type="submit" value="View" />
-                </form><br /><br />
+                    <p class="text-muted"><b>Roll Number : </b><input type="text" value={UserRollnumber} placeholder="Enter your Roll Number" name="rollnumber" onChange={e => setUserRollnumber(e.target.value)} /></p>
+                    <input class="btn btn-primary" type="submit" value="View" />
+                </form><br />
                 {
                     UserRollnumber !== ""
                         ?
                         Present
                             ?
                             <>
-                                Name : {userName} <br />
-                                Roll Number : {RollNumber}<br />
-                                Email : {userEmail} <br />
-                                Phone : {UserPhonenumber} <br />
-                                Mentor RollNumber : {Mentor} <br />
-                                Photo :- <br />
-                                <img src={UserPhoto} alt="user" /><br /><br ></br>
-                                <button onClick={AddMentee} >Add Mentee</button>
+                                <div className="card" style={{ "width": 25 + "rem" }}>
+                                    <img className="card-img-top" src={UserPhoto} alt="Card image cap" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            <table className="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <b><td>Name</td></b>
+                                                        <td>: {userName} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Roll Number</td></b>
+                                                        <td>: {RollNumber}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Email </td></b>
+                                                        <td>: {userEmail}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Phone</td></b>
+                                                        <td>: {UserPhonenumber}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <b><td>Mentor Id</td></b>
+                                                        <td>: {Mentor}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </h5>
+                                        <button class="btn btn-success" onClick={AddMentee} >Add Mentee</button>
+                                    </div>
+                                </div>
                             </>
                             :
                             Flag
@@ -118,7 +142,7 @@ function AddMentees() {
                         <>
                         </>
                 }
-            </center>
+            </center >
         </>
     );
 }
