@@ -15,7 +15,7 @@ const MenteeList = () => {
 
     useEffect(async () => {
         await get();
-        //console.log(Data);
+        console.log(Data);
     }, []);
     const get = async () => {
         const querySnapshot = await getDocs(collection(db, localStorage.getItem("userroll")));
